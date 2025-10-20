@@ -1,0 +1,22 @@
+<div class="min-h-screen min-w-screen justify-center items-center bg-primary-700/35">
+  <div class="flex flex-col gap-5">
+    <app-navbar [items]="items"></app-navbar>
+    <div class="flex justify-center items-center">
+      <p-card header="Split playlists" class="flex-col shadow-2xl text-center rounded-2xl w-2/8">
+        <div class="flex flex-col gap-3 w-full">
+          <div class="flex flex-col gap-5 py-6 px-5">
+            <p-select [options]="playlists" optionLabel="name" (onChange)="selectedPlaylist()" [(ngModel)]="playlist"
+                      placeholder="Select the playlist"></p-select>
+            @if (playlist.id != "") {
+              <p-select [options]="artists" optionLabel="name" [(ngModel)]="artist"
+                        placeholder="Select the artist"></p-select>
+            }
+          </div>
+
+          <p-button (click)="splitPlaylist()">Split</p-button>
+        </div>
+
+      </p-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="min-h-screen min-w-screen flex flex-col justify-center items-center bg-primary-700/35">
+  <div class="flex justify-center items-center">
+    <p-card header="Hello" class="flex-col shadow-2xl text-center rounded-2xl">
+      <div class="flex flex-col gap-3 w-full p-5">
+        <div class="card flex justify-center overflow-x-auto">
+          <p-organization-chart [value]="data">
+            <ng-template let-node pTemplate="person">
+              <div class="flex flex-col">
+                <div class="flex flex-col items-center gap-3">
+                  <p-avatar [image]="node.data.image" shape="circle" class="size-11"/>
+                  <div class="font-bold mb-2">{{ node.data.name }}</div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template let-node pTemplate="path">
+              <a [routerLink]="node.data.route">
+                <div class="flex flex-col items-center gap-3">
+                  <i [class]="node.data.icon"></i>
+                  <div class="font-bold mb-2">{{ node.label }}</div>
+                </div>
+              </a>
+            </ng-template>
+          </p-organization-chart>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>

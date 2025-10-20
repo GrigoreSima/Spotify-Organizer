@@ -1,0 +1,33 @@
+<div class="p-3 px-10 flex w-full">
+  <p-menubar [model]="items" class="w-full drop-shadow-lg drop-shadow-primary-800/30 z-10">
+    <ng-template #start>
+    </ng-template>
+    <ng-template #item let-item let-root="root">
+      @if(item.route) {
+        <ng-container>
+          <a [routerLink]="item.route" class="p-menubar-item-link">
+            <span [class]="item.icon"></span>
+            <span class="ml-1">{{ item.label }}</span>
+          </a>
+        </ng-container>
+      }
+    </ng-template>
+    <ng-template #end>
+      <div class="cursor-pointer ring-4 ring-primary-600/30 rounded-xl p-1 hover:ring-primary-600/60" (click)="menu.toggle($event)">
+        <div class="flex flex-row items-center gap-2">
+          <span class="pi pi-angle-down"></span>
+          <p>{{ profile.display_name }}</p>
+          @if(profile.images[0].url != "") {
+            <p-avatar [image]="profile.images[0].url" shape="circle" class="size-11"/>
+          } @else {
+            <p-avatar icon="pi pi-user" shape="circle" class="size-11"/>
+          }
+        </div>
+      </div>
+      <p-menu #menu
+              [model]="profileItems"
+              [popup]="true"
+              styleClass="mencus"/>
+    </ng-template>
+  </p-menubar>
+</div>

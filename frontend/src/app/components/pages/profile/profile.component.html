@@ -1,0 +1,29 @@
+<div class="min-h-screen min-w-screen justify-center items-center bg-primary-700/35">
+  <div class="flex flex-col gap-5">
+    <app-navbar [items]="items"></app-navbar>
+    <div class="flex justify-center items-center">
+      <p-card header="This is {{profile.display_name}}"
+              class="flex-col shadow-2xl text-center rounded-2xl w-3/4">
+        <div class="flex flex-col gap-5 w-full">
+          <div class="flex flex-col gap-5 py-3 items-center">
+            <div class="flex shadow-xl rounded-full">
+              <p-avatar [image]="userImage.url" shape="circle"
+                        class="size-20"/>
+            </div>
+            <img [src]="profile.country | flagPipe" class="w-7">
+            <div class="flex flex-col gap-2 items-start p-10">
+              <p><span class="font-bold">ID: </span> {{ profile.id }}</p>
+              <p><span class="font-bold">Email: </span>{{ profile.email }}</p>
+              <p><span class="font-bold">Spotify URL: </span> <a
+                [href]="profile.external_urls.spotify"> {{ profile.external_urls.spotify }}</a></p>
+              <p><span class="font-bold">Premium: </span> {{ profile.product == 'free' ? 'No' : 'Yes' }}</p>
+            </div>
+          </div>
+        </div>
+      </p-card>
+    </div>
+  </div>
+</div>
+
+
+

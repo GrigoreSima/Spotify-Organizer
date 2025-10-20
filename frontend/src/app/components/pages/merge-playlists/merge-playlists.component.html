@@ -1,0 +1,37 @@
+<div class="min-h-screen min-w-screen justify-center items-center bg-primary-700/35">
+  <div class="flex flex-col gap-5">
+    <app-navbar [items]="items"></app-navbar>
+    <div class="flex justify-center items-center">
+      <p-card header="Merge playlists" class="flex-col shadow-2xl text-center rounded-2xl w-3/8">
+        <div class="flex flex-col gap-3">
+          <div class="flex flex-col gap-5 py-6 px-5">
+            <p-select [options]="playlistsListOne" optionLabel="name" (onChange)="selectedFirstPlaylist()"
+                      [(ngModel)]="playlistOne" placeholder="Select the first playlist"></p-select>
+            @if (!toANewPlaylist) {
+              <i class="pi pi-angle-double-down"></i>
+            }
+            <p-select [options]="playlistsListTwo" optionLabel="name" (onChange)="selectedSecondPlaylist()"
+                      [(ngModel)]="playlistTwo" placeholder="Select the second playlist"></p-select>
+
+            @if (toANewPlaylist) {
+              <i class="pi pi-angle-double-down"></i>
+            }
+
+            @if (playlistOne.name != "Liked Songs" && playlistTwo.name != "Liked Songs") {
+              <div class="flex items-center">
+                <p-checkbox inputId="collaborative" name="collaborative" value="collaborative"
+                            [(ngModel)]="toANewPlaylist" [binary]="true"/>
+                <label for="collaborative" class="ml-2"> Merge to a new playlist </label>
+              </div>
+            }
+
+            @if (toANewPlaylist) {
+              <app-add-playlist-form (playlistEmitter)="updatePlaylist($event)"></app-add-playlist-form>
+            }
+          </div>
+          <p-button (click)="mergePlaylists()">Merge</p-button>
+        </div>
+      </p-card>
+    </div>
+  </div>
+</div>
